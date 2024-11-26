@@ -1,23 +1,28 @@
 using System;
 using UnityEngine;
 
-public class ButtonBehaviours : MonoBehaviour
+namespace NanoOS
 {
-    public GameObject Window;
-    public void Close()
+    public class ButtonBehaviours : MonoBehaviour
     {
-        Destroy(Window);
-        Debug.Log("Closed " + Window.name);
+        public GameObject Window;
+        public void Close()
+        {
+            Destroy(Window);
+            Debug.Log("Closed " + Window.name);
+        }
+
+        public void Minimize()
+        {
+            Window.SetActive(false);
+            Debug.Log("Minimzed " + Window.name);
+        }
+
+        public void Fullscreen()
+        {
+            throw new NotImplementedException();
+        }
     }
 
-    public void Minimize()
-    {
-        Window.SetActive(false);
-        Debug.Log("Minimzed " + Window.name);
-    }
 
-    public void Fullscreen()
-    {
-        throw new NotImplementedException();
-    }
 }
