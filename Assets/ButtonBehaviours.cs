@@ -12,15 +12,15 @@ namespace NanoOS
             Debug.Log("Closed " + Window.name);
         }
 
+        public void Fullscreen()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Minimize()
         {
             Window.SetActive(false);
             Debug.Log("Minimzed " + Window.name);
-        }
-
-        public void Fullscreen()
-        {
-            throw new NotImplementedException();
         }
     }
 

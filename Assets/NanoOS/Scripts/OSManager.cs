@@ -107,6 +107,10 @@ namespace NanoOS
             }
         }
 
+        /// <summary>
+        /// Gets the Desktop GameObject using GetOSCanvas() and transform.Find()
+        /// </summary>
+        /// <returns></returns>
         public static GameObject GetDesktop()
         {
             GameObject desktop = GetOSCanvas().transform.Find("Desktop").gameObject;
@@ -121,6 +125,12 @@ namespace NanoOS
             }
         }
 
+        /// <summary>
+        /// Creates a Texture field using GUILayout
+        /// </summary>
+        /// <param name="name">Name of the Field</param>
+        /// <param name="texture">Texture of the Field</param>
+        /// <returns></returns>
         public static Texture2D TextureField(string name, Texture2D texture)
         {
             GUILayout.BeginVertical();

@@ -15,8 +15,8 @@ MonoBehaviour:
   UseAssetNameAsAppName: 1
   AppName: Nano Browser
   AppVersion: 0.1
-  AppDescription: App Description
-  Icon: {fileID: 2800000, guid: 602cb87b6a29443b8636370ea0751574, type: 3}
+  AppDescription: A simple browser for NanoOS, uses Google
+  Icon: {fileID: 2800000, guid: 6a2b9a31890718e40907efab5313e9e8, type: 3}
   WindowPrefab: {fileID: 856619524021438776, guid: 375bf2f130f51ec4c9e97976e55cf293, type: 3}
   OnOpenEvent:
     m_PersistentCalls:
