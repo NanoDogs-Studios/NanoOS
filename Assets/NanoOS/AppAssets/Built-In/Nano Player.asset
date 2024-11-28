@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fbd29fd4e173824d84320cca8649e81, type: 3}
+  m_Name: Nano Player
+  m_EditorClassIdentifier: 
+  UseAssetNameAsAppName: 1
+  AppName: Nano Player
+  AppVersion: 0.1
+  AppDescription: A simple music player for NanoOS
+  Icon: {fileID: 2800000, guid: 8ddec5d170c67444d954c6695f4353e7, type: 3}
+  WindowPrefab: {fileID: 6346850704417929660, guid: 91851e8ef2ac59b448ffbadcc3c38fcd, type: 3}
+  OnOpenEvent:
+    m_PersistentCalls:
+      m_Calls: []
