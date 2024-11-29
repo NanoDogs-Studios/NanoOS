@@ -1,17 +1,20 @@
 using SimpleFileBrowser;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.Networking;
 
 public class NanoPlayer : MonoBehaviour
 {
+    public GameObject trackPrefab; // Prefab for UI track display
+    public Transform trackList; // Parent container for track UI elements
+
     public AudioSource Audio;
-    public AudioClip CurrentClip;
+    public List<AudioClip> clips = new List<AudioClip>();
 
     public UISkin FileBrowserSkin;
-    string filePath;
+    private string filePath;
 
     public void PickFile()
     {
@@ -20,21 +23,19 @@ public class NanoPlayer : MonoBehaviour
         FileBrowser.SetDefaultFilter("Audio Files");
         FileBrowser.ShowLoadDialog(OnSuccess, OnCancel, SimpleFileBrowser.FileBrowser.PickMode.Files, false);
     }
+
     void OnSuccess(string[] filePaths)
     {
-        // Print paths of the selected files
-        for (int i = 0; i < filePaths.Length; i++)
-            Debug.Log(filePaths[i]);
-
-        // Get the file path of the first selected file
-        filePath = filePaths[0];
-
-        StartCoroutine(LoadSongCoroutine(filePath));
+        foreach (string path in filePaths)
+        {
+            Debug.Log($"Loading file: {path}");
+            StartCoroutine(LoadSongCoroutine(path));
+        }
     }
 
     public void OnCancel()
     {
-
+        Debug.Log("File selection canceled.");
     }
 
     IEnumerator LoadSongCoroutine(string path)
@@ -46,16 +47,62 @@ public class NanoPlayer : MonoBehaviour
 
             if (request.result == UnityWebRequest.Result.Success)
             {
-                CurrentClip = DownloadHandlerAudioClip.GetContent(request);
-                Audio.clip = CurrentClip;
-                Audio.Play();
+                AudioClip clip = DownloadHandlerAudioClip.GetContent(request);
+                clips.Add(clip); // Add the clip to the list
+                AddTrackToUI(clip, path); // Add the clip to the UI
             }
             else
             {
                 Debug.LogError($"Failed to load song from {url}: {request.error}");
-                Invoke("ResetStatusText", 5f);
             }
         }
+    }
+
+    private void AddTrackToUI(AudioClip clip, string path)
+    {
+        // Instantiate the track UI prefab
+        GameObject trackUI = Instantiate(trackPrefab, trackList);
+
+        // Update the track UI with song info
+        TrackUI trackUIComponent = trackUI.GetComponent<TrackUI>();
+        if (trackUIComponent != null)
+        {
+            trackUIComponent.SetTrackInfo(GetSongNameFromPath(path), Audio, clip);
+        }
+
+        // Optionally, add a button to play the track
+        trackUI.GetComponentInChildren<UnityEngine.UI.Button>().onClick.AddListener(() =>
+        {
+            PlayClip(clip);
+        });
+    }
+
+    private void PlayClip(AudioClip clip)
+    {
+        Audio.clip = clip;
+        Audio.Play();
+    }
+
+    private string GetSongNameFromPath(string path)
+    {
+        return Path.GetFileNameWithoutExtension(path);
+    }
+
+    public string GetArtistNameFromSongTitle()
+    {
+        string songTitle = GetSongName();
+        if (string.IsNullOrEmpty(songTitle))
+        {
+            return null;
+        }
+
+        int hyphenIndex = songTitle.IndexOf('-');
+        if (hyphenIndex > 0)
+        {
+            return songTitle.Substring(0, hyphenIndex).Trim();
+        }
+
+        return null;
     }
 
     public string GetSongName()
@@ -69,25 +116,6 @@ public class NanoPlayer : MonoBehaviour
         // Use Path.GetFileNameWithoutExtension to extract the file name without its extension
         return Path.GetFileNameWithoutExtension(filePath);
     }
-    public string GetArtistNameFromSongTitle()
-    {
-        string songTitle = GetSongName();
-        if (string.IsNullOrEmpty(songTitle))
-        {
-            return null;
-        }
-
-        // Check for the presence of a hyphen ('-')
-        int hyphenIndex = songTitle.IndexOf('-');
-        if (hyphenIndex > 0) // Ensure the hyphen is not at the start
-        {
-            // Extract and return the part before the hyphen
-            return songTitle.Substring(0, hyphenIndex).Trim();
-        }
-
-        // If no hyphen is found, return null
-        return null;
-    }
 
     public string GetSongTitleWithoutArtist()
     {
@@ -97,15 +125,12 @@ public class NanoPlayer : MonoBehaviour
             return null;
         }
 
-        // Check for the presence of a hyphen ('-')
         int hyphenIndex = songTitle.IndexOf('-');
-        if (hyphenIndex >= 0 && hyphenIndex < songTitle.Length - 1) // Ensure hyphen is not at the end
+        if (hyphenIndex >= 0 && hyphenIndex < songTitle.Length - 1)
         {
-            // Extract and return the part after the hyphen
             return songTitle.Substring(hyphenIndex + 1).Trim();
         }
 
-        // If no hyphen is found, return the full song title
         return songTitle;
     }
 }

@@ -464,7 +464,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5412333147073161668}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7338457787058545775}
+        m_TargetAssemblyTypeName: TrackUI, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3643754708775488594
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,6 +488,7 @@ GameObject:
   - component: {fileID: 4852442386774479584}
   - component: {fileID: 1093000364553832801}
   - component: {fileID: 2125999329430862498}
+  - component: {fileID: 7338457787058545775}
   m_Layer: 5
   m_Name: Track
   m_TagString: Untagged
@@ -544,6 +557,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7338457787058545775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3643754708775488594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ea520a1edb8cf04caedfe0955d3f6e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackNameText: {fileID: 2048419365911013136}
+  source1: {fileID: 0}
 --- !u!1 &8286695393542257066
 GameObject:
   m_ObjectHideFlags: 0

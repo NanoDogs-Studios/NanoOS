@@ -18,6 +18,9 @@ namespace NanoOS
         public Transform taskbar;
         public GameObject appTaskbarTemplate;
 
+        public Texture2D currentWallpaper;
+        public RawImage wallpaper;
+
         private Dictionary<WindowAssociations, GameObject> trackedWindows = new Dictionary<WindowAssociations, GameObject>();
 
         private void Start()
@@ -34,6 +37,8 @@ namespace NanoOS
 
         private void Update()
         {
+            wallpaper.texture = currentWallpaper;
+
             // Get all windows under "Windows," including inactive ones
             var windows = new HashSet<WindowAssociations>(transform.Find("Windows").GetComponentsInChildren<WindowAssociations>(true));
 

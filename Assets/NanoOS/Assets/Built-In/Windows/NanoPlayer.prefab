@@ -2045,8 +2045,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d79d27fa5b08cb4d8092e156cb996c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trackPrefab: {fileID: 3643754708775488594, guid: 1f5bd6ae2d9142d418724092f401c613, type: 3}
+  trackList: {fileID: 5240268525086037181}
   Audio: {fileID: 4259388207664708198}
-  CurrentClip: {fileID: 0}
+  clips: []
   FileBrowserSkin: {fileID: 11400000, guid: 07c1616acb3e05d4789781b38d6ab800, type: 2}
 --- !u!82 &4259388207664708198
 AudioSource:
@@ -3041,6 +3043,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Track
       objectReference: {fileID: 0}
+    - target: {fileID: 3643754708775488594, guid: 1f5bd6ae2d9142d418724092f401c613, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4852442386774479584, guid: 1f5bd6ae2d9142d418724092f401c613, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3055,7 +3061,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4852442386774479584, guid: 1f5bd6ae2d9142d418724092f401c613, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4852442386774479584, guid: 1f5bd6ae2d9142d418724092f401c613, type: 3}
       propertyPath: m_AnchorMin.x
@@ -3063,7 +3069,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4852442386774479584, guid: 1f5bd6ae2d9142d418724092f401c613, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4852442386774479584, guid: 1f5bd6ae2d9142d418724092f401c613, type: 3}
       propertyPath: m_SizeDelta.x
@@ -3103,11 +3109,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4852442386774479584, guid: 1f5bd6ae2d9142d418724092f401c613, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 441.5
       objectReference: {fileID: 0}
     - target: {fileID: 4852442386774479584, guid: 1f5bd6ae2d9142d418724092f401c613, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 4852442386774479584, guid: 1f5bd6ae2d9142d418724092f401c613, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
