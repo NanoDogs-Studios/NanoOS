@@ -23,7 +23,7 @@ public class ReplaceButtonWithTooltipEditor : EditorWindow
             var animationTriggers = oldButton.animationTriggers;
 
             // Replace the Button with NanoOSButton
-            oldButton.enabled = false;
+            DestroyImmediate(oldButton);
             NanoOSButton newButton = buttonGameObject.AddComponent<NanoOSButton>();
 
             // Restore settings

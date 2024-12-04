@@ -21,27 +21,34 @@ public class NanoOSButton : Button
         // Create the tooltip GameObject
         tooltipObject = new GameObject("Tooltip");
         tooltipObject.transform.SetParent(transform.root); // Add to the root canvas
+        tooltipObject.transform.localScale = Vector3.one; // Ensure correct scale
+        tooltipObject.transform.position = Vector3.zero;
         tooltipObject.SetActive(false);
 
         // Add components to the tooltip
         var canvasRenderer = tooltipObject.AddComponent<CanvasRenderer>();
         var image = tooltipObject.AddComponent<Image>();
-        var textObject = new GameObject("TooltipText");
+        image.color = new Color(0, 0, 0, 0.8f); // Semi-transparent black background
 
+        var textObject = new GameObject("TooltipText");
         textObject.transform.SetParent(tooltipObject.transform);
+        textObject.transform.localScale = Vector3.one; // Ensure correct scale for text
+        textObject.transform.position = Vector3.zero;
         var text = textObject.AddComponent<TextMeshProUGUI>();
-        text.color = Color.black;
+        text.color = Color.white;
         text.alignment = TextAlignmentOptions.Center;
+        text.fontSize = 12; // Smaller font size
         text.text = tooltipText;
 
         // Position and size the tooltip
         var tooltipRect = tooltipObject.AddComponent<RectTransform>();
-        tooltipRect.sizeDelta = new Vector2(150, 50);
+        tooltipRect.sizeDelta = new Vector2(120, 40); // Smaller tooltip size
         tooltipRect.pivot = new Vector2(0.5f, 0);
 
         var textRect = textObject.GetComponent<RectTransform>();
-        textRect.sizeDelta = new Vector2(140, 40);
+        textRect.sizeDelta = new Vector2(110, 30); // Smaller text area
         textRect.pivot = new Vector2(0.5f, 0.5f);
+        textRect.anchoredPosition = Vector2.zero;
     }
 
     public override void OnPointerEnter(PointerEventData eventData)
