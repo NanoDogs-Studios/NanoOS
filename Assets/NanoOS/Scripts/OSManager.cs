@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -22,6 +24,9 @@ namespace NanoOS
         public RawImage wallpaper;
 
         private Dictionary<WindowAssociations, GameObject> trackedWindows = new Dictionary<WindowAssociations, GameObject>();
+
+        public TMP_Text[] TimeDisplays;
+        public TMP_Text[] DateDisplays;
 
         private void Start()
         {
@@ -76,6 +81,15 @@ namespace NanoOS
                     // Track the window and its taskbar entry
                     trackedWindows.Add(window, windowTaskbar);
                 }
+            }
+
+            foreach(TMP_Text text in TimeDisplays)
+            {
+                text.text = DateTime.Now.ToString("HH:mm");
+            }
+            foreach(TMP_Text text in DateDisplays)
+            {
+                text.text = DateTime.Now.ToString("dd/MM");
             }
         }
     }
